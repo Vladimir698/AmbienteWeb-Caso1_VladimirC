@@ -3,19 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Nota</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Crear Nueva Nota</title>
+    <link rel="stylesheet" href="homestyles.css">
+    <Script src="app.js"></Script>
 </head>
 <body>
     <div class="container">
-        <h1>Crear Nota</h1>
-        <form action="/api/notas" method="POST">
-            <input type="text" name="title" placeholder="Título de la nota" required maxlength="200">
-            <textarea name="content" placeholder="Contenido de la nota" required></textarea>
-            <input type="text" name="tags" placeholder="Etiquetas (separadas por comas)">
-            <button type="submit">Agregar Nota</button>
+        <h1 class="crearnota">Crear Nueva Nota</h1>
+        <form action="/notas" >
+
+
+            <label for="title">Título:</label>
+            <input type="text" id="title"  name="title"  maxlength="300" required>
+
+
+            <label for="content">Contenido:</label>
+            <textarea id="content" name="content" required></textarea>
+
+
+            <label for="tags">Etiquetas (separadas por comas):</label>
+            <input type="text" id="tags" name="tags" maxlength="100">
+
+
+            <!-- Este boton lo necesito para guardar las notas -->
+            <a href="/home.html"><Button  class>Guardar Nota</Button></a>
         </form>
-        <a href="/">Volver a las Notas</a>
+        <a href="/home.html"><Button id="volver-button">Volver</Button></a>
     </div>
 </body>
 </html>
+
+
