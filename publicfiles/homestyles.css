@@ -1,6 +1,8 @@
-/* Estilos generales */
+
 body {
     font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
     background-color: #4A88D9;
     margin: 0;
     padding: 0;
@@ -8,6 +10,7 @@ body {
 
 .container {
     max-width: 800px;
+    flex-direction: column; 
     margin: 20px auto;
     background-color: #F2F2F2;
     padding: 20px;
@@ -38,10 +41,6 @@ button{
     border-radius: 6px; 
 }
 
-button :hover{
-    background-color: white; /* Color de fondo blanco al pasar por encima */
-    
-}
 
 
 h2 {
@@ -65,13 +64,6 @@ a:hover {
 }
 
 
-
-
-/* Formulario de creación de notas */
-form {
-    margin-top: 20px;
-}
-
 input[type="text"], textarea {
     width: 100%;
     padding: 10px;
@@ -82,23 +74,8 @@ input[type="text"], textarea {
     font-size: 14px;
 }
 
-input[type="text"]:focus, textarea:focus {
-    outline: none;
-    border-color: #007bff;
-}
 
-button[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 16px;
-}
 
-button[type="submit"]:hover {
-    background-color: #0056b3;
-}
+
 
 

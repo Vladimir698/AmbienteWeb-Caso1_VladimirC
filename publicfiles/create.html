@@ -5,30 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Nueva Nota</title>
     <link rel="stylesheet" href="homestyles.css">
-    <Script src="app.js"></Script>
+    <script src="app.js" defer></script>
 </head>
 <body>
     <div class="container">
         <h1 class="crearnota">Crear Nueva Nota</h1>
-        <form action="/notas" >
-
-
+        <form>
             <label for="title">Título:</label>
-            <input type="text" id="title"  name="title"  maxlength="300" required>
-
+            <input type="text" id="title" name="title" maxlength="300" required>
 
             <label for="content">Contenido:</label>
             <textarea id="content" name="content" required></textarea>
 
-
-            <label for="tags">Etiquetas (separadas por comas):</label>
+            <label for="tags">Etiquetas:</label>
             <input type="text" id="tags" name="tags" maxlength="100">
 
-
-            <!-- Este boton lo necesito para guardar las notas -->
-            <a href="/home.html"><Button  class>Guardar Nota</Button></a>
+            <label for="creationDate">Fecha de Creación:</label>
+            <input type="date" id="creationDate" name="creationDate" required>
+            
+            <button type="submit">Guardar Nota</button>
         </form>
-        <a href="/home.html"><Button id="volver-button">Volver</Button></a>
+
+        <a href="/home.html"><button id="volver-button">Volver</button></a>
     </div>
 </body>
 </html>

@@ -1,67 +1,59 @@
 
-        
-        setTimeout(() => {
-            fetchNotes();
-        }, 100);
 
-        async function fetchNotes() {
-            try {
-                const response = await fetch('/notas');
-                if (!response.ok) {
-                    throw new Error('Error al obtener las notas');
-                }
-                const notasHTML = await response.text(); // Convertir la respuesta a texto HTML
-                const notesContainer = document.getElementById('notes-container');
-                if (notesContainer) {
-                    notesContainer.innerHTML = notasHTML; // Insertar las notas en el contenedor si existe
-                } else {
-                    console.error('Elemento notes-container no encontrado');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
+// Array para almacenar las notas 
+var notas = JSON.parse(localStorage.getItem('notas')) || [];
 
 
-        // document.addEventListener('DOMContentLoaded', () => {
-        //     const form = document.getElementById('guardar-nota');
-            
-        //     form.addEventListener('submit', async (event) => {
-        //         event.preventDefault(); // Prevenir comportamiento predeterminado
-        
-        //         const title = document.getElementById('title').value;
-        //         const content = document.getElementById('content').value;
-        //         const tags = document.getElementById('tags').value;
-        
-        //         const newNote = {
-        //             titulo: title,
-        //             contenido: content,
-        //             tags: tags
-        //         };
-        
-        //         try {
-        //             const response = await fetch('/notas', {
-        //                 method: 'POST',
-        //                 headers: {
-        //                     'Content-Type': 'application/json'
-        //                 },
-        //                 body: JSON.stringify(newNote)
-        //             });
-        
-        //             if (!response.ok) {
-        //                 throw new Error('Error al crear la nota');
-        //             }
-        
-        //             const createdNote = await response.json();
-        //             console.log('Nota creada:', createdNote);
-        
-        //             // Redireccionar o mostrar un mensaje de éxito
-        //             window.location.href = '/home.html';
-        
-        //         } catch (error) {
-        //             console.error('Error:', error);
-        //             alert('Hubo un error al crear la nota.');
-        //         }
-        //     });
-        // });
+function crearNota(event) {
+    event.preventDefault();
+    var title = document.getElementById('title').value;
+    var content = document.getElementById('content').value;
+    var tags = document.getElementById('tags').value;
+    var creationDate = document.getElementById('creationDate').value;
+    var nuevaNota = { title: title, content: content, tags: tags, creationDate: creationDate};
+    notas.push(nuevaNota);
+    localStorage.setItem('notas', JSON.stringify(notas));
+    mostrarNotas();
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', crearNota);
+        mostrarNotas(); // Muestra las notas existentes
+    } else{
+        mostrarNotas();
+    }
+});
+
+function mostrarNotas() {
+    var notesContainer = document.getElementById('notesContainer');
+    notesContainer.innerHTML = '';
+    notas.forEach(function(nota) {
+        var notaD = document.createElement('div');
+        notaD.classList.add('nota');
+
+        var titulo = document.createElement('h2');
+        titulo.textContent = nota.title;
+        notaD.appendChild(titulo);
+
+        var contenido = document.createElement('p');
+        contenido.textContent = nota.content;
+        notaD.appendChild(contenido);
+
+        var etiquetas = document.createElement('p');
+        etiquetas.textContent = 'Etiquetas: ' + nota.tags;
+        notaD.appendChild(etiquetas);
+
+        var fechaCreacion = document.createElement('p');
+        fechaCreacion.textContent = 'Fecha de Creación: ' + nota.creationDate;
+        notaD.appendChild(fechaCreacion);
+
+        notesContainer.appendChild(notaD);
+    });
+}
+
+
+
         
